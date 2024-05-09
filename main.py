@@ -1,5 +1,5 @@
-import disnake
 from disnake.ext import commands
+import disnake
 import os
 import io
 import imageio
@@ -8,6 +8,7 @@ from PIL import Image
 import logging
 
 logging.basicConfig(level=logging.INFO)
+
 
 
 class ImgGif(commands.Bot):
@@ -52,6 +53,11 @@ async def check_permissions(interaction):
         await interaction.response.send_message(
             embed=disnake.Embed(description="Нет прав.", colour=disnake.Color.red())
         )
+
+@bot.slash_command(name="пинг", description="Проверка не сдох ли бот")
+    async def ping(interaction):
+        latency = round(bot.latency * 1000)
+        await interaction.response.send_message(embed=disnake.Embed(description=f"Пинг {latency}ms", colour=disnake.Color.green()))
 
     """
     if (
@@ -200,5 +206,8 @@ async def process_mem_image(attachment, message):
     except Exception as e:
         await message.reply(f"Ошибка при обработке изображения: {e}")
 
+for filename in os.listdir('./cogs'):
+  if filename.endswith('.py'):
+      bot.load_extension(f'cogs.{filename[:-3]}') 
 
 bot.run("")
