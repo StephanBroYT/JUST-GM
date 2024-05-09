@@ -7,34 +7,43 @@ import numpy as np
 from PIL import Image
 import logging
 
+
 logging.basicConfig(level=logging.INFO)
 
 
+# class ImgGif(commands.Bot):
 
-class ImgGif(commands.Bot):
+#     @classmethod
+#     def create(cls) -> "ImgGif":
+#         """Create and return an instance of a Bot."""
+#         _intents = disnake.Intents.none()
+#         _intents.members = True
+#         _intents.bans = True
+#         _intents.dm_messages = True  # ????
+#         _intents.guilds = True
 
-    @classmethod
-    def create(cls) -> "ImgGif":
-        """Create and return an instance of a Bot."""
-        _intents = disnake.Intents.none()
-        _intents.members = True
-        _intents.bans = True
-        _intents.dm_messages = True  # ????
-        _intents.guilds = True
+#         return cls(
+#             owner_ids=[973169875419795488, 986355526948515870],
+#             intents=_intents,
+#             command_prefix=commands.when_mentioned,
+#             allowed_mentions=disnake.AllowedMentions(everyone=False),
+#             activity=disnake.Game(name="Делаю гифки"),
+#         )
 
-        return cls(
-            owner_ids=[973169875419795488, 986355526948515870],
-            intents=_intents,
-            command_prefix=commands.when_mentioned,
-            allowed_mentions=disnake.AllowedMentions(everyone=False),
-            activity=disnake.Game(name="Делаю гифки"),
-        )
-
-    async def on_ready(self):
-        print(f"Logged in as {self.user}")
+#     async def on_ready(self):
+#         print(f"Logged in as {self.user}")
+# bot = ImgGif.create()
 
 
-bot = ImgGif.create()
+bot = commands.Bot(
+    command_prefix="/",
+    intents=disnake.Intents.all(),
+    activity=disnake.Game(name="Делаю гифки"),
+    owner_ids=[973169875419795488, 986355526948515870],
+)
+
+
+# 12321
 
 
 @bot.slash_command(name="съебал", description="Команда выключает бота")
@@ -54,35 +63,26 @@ async def check_permissions(interaction):
             embed=disnake.Embed(description="Нет прав.", colour=disnake.Color.red())
         )
 
-@bot.slash_command(name="пинг", description="Проверка не сдох ли бот")
-    async def ping(interaction):
-        latency = round(bot.latency * 1000)
-        await interaction.response.send_message(embed=disnake.Embed(description=f"Пинг {latency}ms", colour=disnake.Color.green()))
 
-    """
-    if (
-        interaction.author.id != 973169875419795488
-        or interaction.author.id != 986355526948515870
-    ):
-        await interaction.response.send_message(
-            embed=disnake.Embed(description="Нет прав.", colour=disnake.Color.red())
+@bot.slash_command(name="пинг", description="Проверка не сдох ли бот")
+async def ping(interaction):
+    latency = round(bot.latency * 1000)
+    await interaction.response.send_message(
+        embed=disnake.Embed(
+            description=f"Пинг {latency}ms", colour=disnake.Color.green()
         )
-    else:
-        await interaction.response.send_message(
-            embed=disnake.Embed(
-                description="Сеанс завершён...", colour=disnake.Color.green()
-            )
-        )
-        await bot.close()
-    """
+    )
 
 
 @bot.event
-async def on_message(message):
+async def on_ready():
+    print(f"Logged in as {bot.user}")
 
+
+async def on_message(message):
     if message.author == bot.user:
         return
-
+    print(message.content)
     if isinstance(message.channel, disnake.DMChannel) and message.attachments:
         # Проверяем, что сообщение отправлено в личные сообщения и содержит вложения
         attachment = message.attachments[0]
@@ -206,8 +206,9 @@ async def process_mem_image(attachment, message):
     except Exception as e:
         await message.reply(f"Ошибка при обработке изображения: {e}")
 
-for filename in os.listdir('./cogs'):
-  if filename.endswith('.py'):
-      bot.load_extension(f'cogs.{filename[:-3]}') 
 
-bot.run("")
+for filename in os.listdir("./cogs"):
+    if filename.endswith(".py"):
+        bot.load_extension(f"cogs.{filename[:-3]}")
+
+bot.run("MTIwMzI0MzgzMDI3NTYwNDUyMA.G_1zGE.0Ib_PGg4Aah7upDxenmIhuZfJA7yJOEeYssPgk")
