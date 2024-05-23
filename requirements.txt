@@ -3,3 +3,4 @@ imageio
 numpy
 pillow
 logging
+pynacl
