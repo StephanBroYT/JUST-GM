@@ -1,0 +1,5 @@
+disnake
+imageio
+numpy
+pillow
+logging
