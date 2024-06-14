@@ -15,7 +15,7 @@ intents.message_content = True
 bot = commands.Bot(
     command_prefix = "/",
     intents = intents,
-    activity = disnake.Game("Visual Studio Code"),
+    activity = disnake.Game("Делаю гифки"),
     status = disnake.Status.do_not_disturb
 )
 
