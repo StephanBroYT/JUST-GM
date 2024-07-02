@@ -4,6 +4,7 @@ import os
 import io
 import imageio
 
+from config import TOKEN
 from PIL import Image
 import logging
 
@@ -27,4 +28,4 @@ bot.load_extension("cogs.fun")
 bot.load_extension("cogs.convert")
 
 
-bot.run("MTIzNzgxNzQ3Njk2ODg3ODExMQ.GKvn0T.jtWXMm-JHD-MDIdtbyY3xt1VvwV6EaZLOT7hY8")
+bot.run(TOKEN)
