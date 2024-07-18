@@ -12,11 +12,16 @@ class ImageConverterCommand(commands.Cog):
     async def send_ticket_button(self, inter: disnake.ApplicationCommandInteraction, image_entr: disnake.Attachment):
         if inter.author == self.bot.user:
             return
+        if inter.guild_id == 1083650721959919636:
+            if inter.channel_id != 1263555318701625426:
+                await inter.response.send_message(f'Команду можно использовать только в канале https://discord.com/channels/1083650721959919636/1263555318701625426 (только в дискорд сервере INLESS)', ephemeral=True)
+                return
         
         if image_entr.content_type and image_entr.content_type.startswith("image"):
             # Если вложение является изображением
             await self.ask_conversion_type(image_entr, inter)
-
+            
+        
     async def ask_conversion_type(self, image_entr, inter):
         try:
             # Отправляем сообщение с кнопками
@@ -61,7 +66,7 @@ class ImageConverterCommand(commands.Cog):
             # Перемещаем указатель в начало файла для отправки
             gif_bytes.seek(0)
             # Отправляем gif в ответ на сообщение
-            await inter.edit_original_message(f"Ваша гифка {inter.author.name}: ", file=disnake.File(gif_bytes, filename="converted.gif"), components=[])
+            await inter.edit_original_message(f"Ваша гифка <@{inter.author.id}>: ", file=disnake.File(gif_bytes, filename="converted.gif"), components=[])
             # Отправляем гифку в определенный канал Discord
             channel_log = self.bot.get_channel(
                 1237789824530776065
@@ -98,7 +103,7 @@ class ImageConverterCommand(commands.Cog):
             # Перемещаем указатель в начало файла для отправки
             gif_bytes.seek(0)
             # Отправляем gif в ответ на сообщение
-            await inter.edit_original_message(f"Ваша гифка {inter.author.name}: ",file=disnake.File(gif_bytes, filename="converted.gif"), components = [])
+            await inter.edit_original_message(f"Ваша гифка <@{inter.author.id}>: ",file=disnake.File(gif_bytes, filename="converted.gif"), components = [])
             # Отправляем гифку в определенный канал Discord
             channel_log = self.bot.get_channel(
                 1237789824530776065
