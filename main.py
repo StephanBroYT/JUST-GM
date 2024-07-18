@@ -22,10 +22,12 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():
+    bot.load_extension("cogs.fun")
+    bot.load_extension("cogs.convert")
+    bot.load_extension("cogs.convert_command")
     print(f"Logged in as {bot.user}")
 
-bot.load_extension("cogs.fun")
-bot.load_extension("cogs.convert")
+
 
 
 bot.run(TOKEN)
