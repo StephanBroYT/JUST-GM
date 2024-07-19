@@ -50,7 +50,7 @@ class ImageConverterCommand(commands.Cog):
             elif interaction.component.label == "Мем":
                 await self.process_mem_image(image_entr, inter)
         except Exception as e:
-            await inter.reply(f"Ошибка: {e}")
+            await inter.edit_original_message(f"Ошибка: {e}", components=[])
 
     async def process_image(self, image_entr, inter):
         try:
