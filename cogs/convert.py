@@ -3,6 +3,7 @@ from PIL import Image
 import imageio
 import disnake
 from disnake.ext import commands
+from config import LOG_CHANNEL
 
 class ImageConverter(commands.Cog):
     def __init__(self, bot):
@@ -67,7 +68,7 @@ class ImageConverter(commands.Cog):
             await message.reply(f"Ваша гифка <@{message.author.id}>:", file=disnake.File(gif_bytes, filename="converted.gif"), components=[])
             # Отправляем гифку в определенный канал Discord
             channel_log = self.bot.get_channel(
-                1237789824530776065  # здесь айди канала куда будет отправляться сообщение
+                LOG_CHANNEL  # здесь айди канала куда будет отправляться сообщение
             )
             gif_bytes.seek(0)
             await channel_log.send(
@@ -103,7 +104,7 @@ class ImageConverter(commands.Cog):
             await message.reply(f"Ваша гифка {message.author.name}:", file=disnake.File(gif_bytes, filename="JustGM.gif"), components=[])
             # Отправляем гифку в определенный канал Discord
             channel_log = self.bot.get_channel(
-                1237789824530776065  # здесь айди канала куда будет отправляться сообщение
+                LOG_CHANNEL  # здесь айди канала куда будет отправляться сообщение
             )
             gif_bytes.seek(0)
             await channel_log.send(
