@@ -2,4 +2,5 @@ disnake
 imageio
 numpy
 pillow
-logging
+pynacl
+python-dotenv

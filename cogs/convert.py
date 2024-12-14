@@ -1,6 +1,5 @@
 import io
 from PIL import Image
-import imageio
 import disnake
 from disnake.ext import commands
 

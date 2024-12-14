@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from random import choice, randint
+from random import choice
 
 import disnake
 from disnake import StageInstance
