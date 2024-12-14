@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade pip
 
 # Клонируем репозиторий
-RUN git clone --branch dev https://github.com/StephanBroYT/JUST-GM.git .
+RUN git clone --branch new_ver https://github.com/StephanBroYT/JUST-GM.git .
 
 # Устанавливаем зависимости вручную
 RUN pip install --no-cache-dir disnake
