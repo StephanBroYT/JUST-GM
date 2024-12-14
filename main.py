@@ -1,11 +1,7 @@
 ﻿from disnake.ext import commands
 import disnake
-import os
-import io
-import imageio
 
 from config import TOKEN
-from PIL import Image
 import logging
 
 logging.basicConfig(level=logging.INFO)
