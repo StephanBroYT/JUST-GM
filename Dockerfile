@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade pip
 
 # Клонируем репозиторий
-RUN git clone --branch new_ver https://github.com/StephanBroYT/JUST-GM.git .
+RUN git clone --branch dev https://github.com/StephanBroYT/JUST-GM.git .
 
 # Устанавливаем зависимости вручную
 RUN pip install --no-cache-dir disnake
@@ -25,6 +25,7 @@ RUN pip install --no-cache-dir numpy
 RUN pip install --no-cache-dir pillow
 RUN pip install --no-cache-dir pynacl
 RUN pip install --no-cache-dir python-dotenv
+RUN pip install --no-cache-dir groq
 
 
 
