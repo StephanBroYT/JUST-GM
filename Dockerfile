@@ -25,6 +25,7 @@ RUN pip install --no-cache-dir numpy
 RUN pip install --no-cache-dir pillow
 RUN pip install --no-cache-dir pynacl
 RUN pip install --no-cache-dir python-dotenv
+RUN pip install --no-cache-dir groq
 
 
 
